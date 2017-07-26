@@ -35,8 +35,8 @@ public class CarproController {
 	
 	@GetMapping("/getallcars")
 	@ResponseBody
-	public List<Carpro> getAllCars() {
-		return this.carproService.getAllCars();
+	public String getAllCars() {
+		return this.carproService.getAllCars().toString();
 	}
 	
 	
