@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CarproController {
 
 	@GetMapping("/cars")
+	@ResponseBody
 	public String getAllCars() {
 		return "Cars a dair hersey";
 	}
