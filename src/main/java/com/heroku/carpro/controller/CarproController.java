@@ -11,9 +11,13 @@ import com.heroku.carpro.service.CarproService;
 @RestController
 public class CarproController {
 	
-	@Autowired
 	private CarproService carproService;
 
+	@Autowired
+	public CarproController(CarproService carproService) {
+		this.carproService = carproService;
+	}
+	
 	@GetMapping("/cars")
 	@ResponseBody
 	public String getAllCars() {
