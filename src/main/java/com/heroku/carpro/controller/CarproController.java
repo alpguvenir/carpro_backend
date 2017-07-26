@@ -33,7 +33,7 @@ public class CarproController {
 		return "Cars a dair hersey";
 	}
 	
-	@GetMapping("/getAllCars")
+	@GetMapping("/getallcars")
 	@ResponseBody
 	public List<Carpro> getAllCars() {
 		return this.carproService.getAllCars();
