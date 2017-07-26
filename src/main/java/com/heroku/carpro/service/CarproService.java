@@ -24,5 +24,10 @@ public class CarproService {
 		carproRepository.findAll().forEach(cars::add);
 		return cars;
 	}
+
+	public Carpro addCar(Carpro carpro) {
+		carpro.setId(0);
+		return carproRepository.save(carpro);
+	}
 	
 }
