@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.heroku.carpro.entity.Carpro;
 import com.heroku.carpro.service.CarproService;
 
-@Controller
+@RestController
 public class CarproController {
 	
 	private CarproService carproService;
@@ -25,25 +26,25 @@ public class CarproController {
 	}
 	
 	@GetMapping("/")
-    @ResponseBody
+    //@ResponseBody
     String home() {
       return "Hello World!";
     }
 	
 	@GetMapping("/cars")
-	@ResponseBody
+	//@ResponseBody
 	public String getCars() {
 		return "Cars a dair hersey";
 	}
 	
 	@GetMapping("/getallcars")
-	@ResponseBody
+	//@ResponseBody
 	public String getAllCars() {
 		return this.carproService.getAllCars().toString();
 	}
 	
 	@PostMapping("/cars")
-	@ResponseBody
+	//@ResponseBody
 	public ResponseEntity<Carpro> addCar(@RequestBody Carpro carpro) {
 		Carpro json = this.carproService.addCar(carpro);
 		if (json == null) {
@@ -51,8 +52,5 @@ public class CarproController {
 		}
 		return ResponseEntity.ok(json);
 	}
-	
-	
-	
 	
 }
