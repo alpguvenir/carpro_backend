@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 
 
 // Telling that Vehicle class is an Entity in my relational DB
+
 @Entity
 // The getters and setter are created with lombok
-// lombok.jar is included into the project under referenced libraries
-// Also lombok is included as a dependency in pom.xml
-
 @Data
 @Builder
 @AllArgsConstructor
