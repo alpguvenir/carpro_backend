@@ -19,12 +19,10 @@ public class CarproService {
 		this.carproRepository = carproRepository;
 	}
 
-	public String getAllCars() {
+	public List<Carpro> getAllCars() {
 		List<Carpro> cars = new ArrayList<>();
 		carproRepository.findAll().forEach(cars::add);
-		if(cars.isEmpty())
-			return "boss";
-		return "dolu";
+		return cars;
 	}
 	
 }
