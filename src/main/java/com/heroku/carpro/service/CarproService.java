@@ -34,4 +34,15 @@ public class CarproService {
 		return carproRepository.findOne(id);
 	}
 	
+	public Carpro updateCarById(int id, Carpro carpro) {
+		Carpro temp = carproRepository.findOne(id);
+		if(temp != null) {
+			temp.setId(id);
+			temp.setBrand(carpro.getBrand());
+			temp.setYearEstablished(carpro.getYearEstablished());
+			return carproRepository.save(temp);
+		}
+		return null;
+	}
+	
 }

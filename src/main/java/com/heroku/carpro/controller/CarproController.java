@@ -1,16 +1,13 @@
 package com.heroku.carpro.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.heroku.carpro.entity.Carpro;
@@ -58,5 +55,15 @@ public class CarproController {
 		}
 		return ResponseEntity.ok(json);
 	}
+	
+	@PutMapping("/cars/{id}")
+	public ResponseEntity<Carpro> updateCarById(@PathVariable int id, @RequestBody Carpro car) {
+		Carpro json = this.carproService.updateCarById(id, car);
+		if (json == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+		return ResponseEntity.ok(json);
+	}
+	
 	
 }
