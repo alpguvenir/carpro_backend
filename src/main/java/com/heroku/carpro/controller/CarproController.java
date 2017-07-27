@@ -3,6 +3,7 @@ package com.heroku.carpro.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +26,12 @@ public class CarproController {
 	
 	@GetMapping("/")
     String home() {
-      return "Hello World!";
+      return "Home page!";
     }
 	
-	@GetMapping("/getallcars")
+	@GetMapping("/cars")
 	public String getAllCars() {
 		return this.carproService.getAllCars().toString();
-	}
-	
-	@GetMapping("/cars")
-	public String getCars() {
-		return "Cars a dair hersey";
 	}
 	
 	@PostMapping("/cars")
@@ -65,5 +61,12 @@ public class CarproController {
 		return ResponseEntity.ok(json);
 	}
 	
+	@DeleteMapping("/cars/{id}")
+	public ResponseEntity<Carpro> deleteCarById(@PathVariable int id) {
+		boolean success = this.carproService.deleteCarById(id);
+		if(success)
+			return ResponseEntity.status(HttpStatus.OK).body(null);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	}
 	
 }

@@ -44,5 +44,13 @@ public class CarproService {
 		}
 		return null;
 	}
+
+	public boolean deleteCarById(int id) {
+		if(carproRepository.findOne(id) != null) {
+			carproRepository.delete(id);
+			return true;
+		}
+		return false;
+	}
 	
 }
