@@ -22,7 +22,7 @@ public class CarproService {
 	}
 
 	// Returning all cars in the db as in a sorted order based on id value
-	public List<Carpro> getAllCars() {
+	public List<Carpro> getAllCarpros() {
 		List<Carpro> cars = new ArrayList<>();
 		carproRepository.findAll().forEach(cars::add);
 		
@@ -38,18 +38,18 @@ public class CarproService {
 	}
 
 	// Adding a car to the db
-	public Carpro addCar(Carpro carpro) {
+	public Carpro addCarpro(Carpro carpro) {
 		carpro.setId(0);
 		return carproRepository.save(carpro);
 	}
 
 	// Returning a car object based on the object
-	public Carpro getCarById(int id) {
+	public Carpro getCarproById(int id) {
 		return carproRepository.findOne(id);
 	}
 	
 	// Update a car by the id and return the updated car object
-	public Carpro updateCarById(int id, Carpro carpro) {
+	public Carpro updateCarproById(int id, Carpro carpro) {
 		Carpro temp = carproRepository.findOne(id);
 		if(temp != null) {
 			temp.setId(id);
@@ -61,7 +61,7 @@ public class CarproService {
 	}
 
 	// Delete a car object based on the id reference
-	public boolean deleteCarById(int id) {
+	public boolean deleteCarproById(int id) {
 		if(carproRepository.findOne(id) != null) {
 			carproRepository.delete(id);
 			return true;

@@ -30,13 +30,13 @@ public class CarproController {
     }
 
 	@GetMapping("/cars")
-	public String getAllCars() {
-		return this.carproService.getAllCars().toString();
+	public String getAllCarpros() {
+		return this.carproService.getAllCarpros().toString();
 	}
 	
 	@PostMapping("/cars")
-	public ResponseEntity<Carpro> addCar(@RequestBody Carpro carpro) {
-		Carpro json = this.carproService.addCar(carpro);
+	public ResponseEntity<Carpro> addCarpro(@RequestBody Carpro carpro) {
+		Carpro json = this.carproService.addCarpro(carpro);
 		if (json == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
@@ -44,8 +44,8 @@ public class CarproController {
 	}
 	
 	@GetMapping("/cars/{id}")
-	public ResponseEntity<Carpro> getCarById(@PathVariable int id) {
-		Carpro json = this.carproService.getCarById(id);
+	public ResponseEntity<Carpro> getCarproById(@PathVariable int id) {
+		Carpro json = this.carproService.getCarproById(id);
 		if (json == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
@@ -53,8 +53,8 @@ public class CarproController {
 	}
 	
 	@PutMapping("/cars/{id}")
-	public ResponseEntity<Carpro> updateCarById(@PathVariable int id, @RequestBody Carpro car) {
-		Carpro json = this.carproService.updateCarById(id, car);
+	public ResponseEntity<Carpro> updateCarproById(@PathVariable int id, @RequestBody Carpro car) {
+		Carpro json = this.carproService.updateCarproById(id, car);
 		if (json == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
@@ -62,8 +62,8 @@ public class CarproController {
 	}
 	
 	@DeleteMapping("/cars/{id}")
-	public ResponseEntity<Carpro> deleteCarById(@PathVariable int id) {
-		boolean success = this.carproService.deleteCarById(id);
+	public ResponseEntity<Carpro> deleteCarproById(@PathVariable int id) {
+		boolean success = this.carproService.deleteCarproById(id);
 		if(success)
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
