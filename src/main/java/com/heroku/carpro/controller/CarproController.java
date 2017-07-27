@@ -1,5 +1,7 @@
 package com.heroku.carpro.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +32,13 @@ public class CarproController {
     }
 
 	@GetMapping("/cars")
-	public String getAllCarpros() {
-		return this.carproService.getAllCarpros().toString();
+	public ResponseEntity<List<Carpro>> getAllCarpros() {
+		List<Carpro> list = this.carproService.getAllCarpros();
+		if (list.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+		}
+		return ResponseEntity.ok(list);
+		
 	}
 	
 	@PostMapping("/cars")
