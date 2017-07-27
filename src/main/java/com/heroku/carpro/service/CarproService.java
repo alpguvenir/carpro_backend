@@ -1,6 +1,8 @@
 package com.heroku.carpro.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,15 @@ public class CarproService {
 	public List<Carpro> getAllCars() {
 		List<Carpro> cars = new ArrayList<>();
 		carproRepository.findAll().forEach(cars::add);
+		
+		// Always show the list sorted
+		Collections.sort(cars, new Comparator<Carpro>() {
+			public int compare(Carpro carpro1, Carpro carpro2) {
+				return carpro1.getId() - carpro2.getId();
+			}
+		}
+		);
+		
 		return cars;
 	}
 
