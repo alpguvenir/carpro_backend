@@ -29,5 +29,9 @@ public class CarproService {
 		carpro.setId(0);
 		return carproRepository.save(carpro);
 	}
+
+	public Carpro getCarById(int id) {
+		return carproRepository.findOne(id);
+	}
 	
 }
