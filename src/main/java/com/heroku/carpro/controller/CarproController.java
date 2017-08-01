@@ -31,6 +31,7 @@ public class CarproController {
       return "Home page!";
     }
 
+	/*
 	@GetMapping("/cars")
 	public ResponseEntity<List<Carpro>> getAllCarpros() {
 		List<Carpro> list = this.carproService.getAllCarpros();
@@ -39,6 +40,13 @@ public class CarproController {
 		}
 		return ResponseEntity.ok(list);
 		
+	}
+	*/
+	
+	@GetMapping("/cars")
+	public List<Carpro> getAllCarpros() {
+		List<Carpro> list = this.carproService.getAllCarpros();
+		return list;
 	}
 	
 	@PostMapping("/cars")
