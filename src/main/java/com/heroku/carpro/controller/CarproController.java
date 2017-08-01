@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.heroku.carpro.entity.Carpro;
 import com.heroku.carpro.service.CarproService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class CarproController {
 	
 	private CarproService carproService;
@@ -31,7 +33,6 @@ public class CarproController {
       return "Home page!";
     }
 
-	/*
 	@GetMapping("/cars")
 	public ResponseEntity<List<Carpro>> getAllCarpros() {
 		List<Carpro> list = this.carproService.getAllCarpros();
@@ -40,13 +41,6 @@ public class CarproController {
 		}
 		return ResponseEntity.ok(list);
 		
-	}
-	*/
-	
-	@GetMapping("/cars")
-	public List<Carpro> getAllCarpros() {
-		List<Carpro> list = this.carproService.getAllCarpros();
-		return list;
 	}
 	
 	@PostMapping("/cars")
