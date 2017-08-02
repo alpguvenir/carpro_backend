@@ -49,6 +49,9 @@ public class CarproController {
 		if (json == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
+		if(json.getYearEstablished()==0) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
 		return ResponseEntity.ok(json);
 	}
 	
