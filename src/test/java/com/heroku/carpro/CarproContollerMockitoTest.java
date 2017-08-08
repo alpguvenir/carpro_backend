@@ -73,12 +73,12 @@ public class CarproContollerMockitoTest {
 		
 		when(carproService.getAllCarpros()).thenReturn(mockList);
 		
-		//List<Carpro> returnList = carproController.getAllCarpros();
-		//assertEquals(mockList.toString(), returnList);
+		ResponseEntity<List<Carpro>> returnList = carproController.getAllCarpros();
+		assertEquals(mockList.toString(), returnList.getBody().toString());
 		
 	}
 	
-	/*
+	
 	@Test
 	public void addCarproTest() {
 		String brand;
@@ -91,63 +91,47 @@ public class CarproContollerMockitoTest {
 		when(carproService.addCarpro(mockObj)).thenReturn(mockObj);
 		
 		ResponseEntity<Carpro> returnObj = carproController.addCarpro(mockObj);
-		
-		System.out.println(returnObj);
-		
-		Carpro castReturnObj = null;
-		try {
-			castReturnObj = mapper.readValue(returnObj.getBody().toString(), Carpro.class);
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println(castReturnObj);
-		
-		assertEquals(1, castReturnObj.getId());
-		assertEquals("Mercedes", castReturnObj.getBrand());
-		assertEquals(2012, castReturnObj.getYearEstablished());
+		assertEquals(1, returnObj.getBody().getId());
+		assertEquals("Mercedes", returnObj.getBody().getBrand());
+		assertEquals(2012, returnObj.getBody().getYearEstablished());
 	}
 	
+	
 	@Test
-	public void updateVehicleByIdTest() {
+	public void updateCarproByIdTest() {
 		String brand;
 		int yearEstablished;
 		
 		brand = brandList.get(0);
 		yearEstablished = yearEstablishedList.get(2);
-		Vehicle mockObj = Vehicle.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
+		Carpro mockObj = Carpro.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
 		
 		brand = brandList.get(0);
 		yearEstablished = yearEstablishedList.get(7);
-		Vehicle updatedObj = Vehicle.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
+		Carpro updatedObj = Carpro.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
 				
-		when(vehicleService.updateVehicleById(1, mockObj)).thenReturn(updatedObj);
+		when(carproService.updateCarproById(1, mockObj)).thenReturn(updatedObj);
 		
-		Vehicle returnObj = vehicleController.updateVehicleById(1, mockObj);
-		assertEquals(updatedObj, returnObj);
+		ResponseEntity<Carpro> returnObj = carproController.updateCarproById(1, mockObj);
+		assertEquals(updatedObj, returnObj.getBody());
 		
 	}
 	
+	
 	@Test
-	public void deleteVehicleByIdTest() {
+	public void deleteCarproByIdTest() {
 		String brand;
 		int yearEstablished;
 		
 		brand = brandList.get(0);
 		yearEstablished = yearEstablishedList.get(2);
-		Vehicle testObj1 = Vehicle.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
+		Carpro testObj1 = Carpro.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
 		
-		vehicleController.deleteVehicleById(testObj1.getId());
-		verify(vehicleService).deleteVehicleById(1);
+		carproController.deleteCarproById(testObj1.getId());
+		verify(carproService).deleteCarproById(1);
 		
 	}
+	
 	
 	@Test
 	public void getVehicleByIdTest() {
@@ -156,13 +140,13 @@ public class CarproContollerMockitoTest {
 		
 		brand = brandList.get(1);
 		yearEstablished = yearEstablishedList.get(5);
-		Vehicle testObj1 = Vehicle.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
+		Carpro testObj1 = Carpro.builder().id(1).brand(brand).yearEstablished(yearEstablished).build();
 		
-		when(vehicleService.getVehicleById(testObj1.getId())).thenReturn(testObj1);
-		Vehicle returnObj = vehicleController.getVehicleById(1);
-		assertEquals(1, returnObj.getId());
-		assertEquals(brand, returnObj.getBrand());
-		assertEquals(yearEstablished, returnObj.getYearEstablished());
+		when(carproService.getCarproById(testObj1.getId())).thenReturn(testObj1);
+		ResponseEntity<Carpro> returnObj = carproController.getCarproById(1);
+		assertEquals(1, returnObj.getBody().getId());
+		assertEquals(brand, returnObj.getBody().getBrand());
+		assertEquals(yearEstablished, returnObj.getBody().getYearEstablished());
 	}
-	*/
+	
 }
